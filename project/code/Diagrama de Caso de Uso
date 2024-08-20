@@ -1,0 +1,22 @@
+@startuml
+
+actor Aluno 
+actor secretaria
+actor professor
+actor SistemaDeMatricula <<Application>>
+
+:secretaria: --> (Gerar Currículo Semestral)
+:secretaria: --> (Gerenciar Disciplinas)
+:secretaria: --> (Verificar Status das Disciplinas)
+
+:Aluno: --> (Efetuar Matrícula) 
+:Aluno: --> (Cancelar Matrícula)
+
+:SistemaDeMatricula: --> (Encerrar Matrículas para Disciplina)
+:SistemaDeMatricula: --> (Notificar Sistema de Cobranças)
+
+:professor: --> (Visualizar alunos matriculados)
+
+(Efetuar Matrícula) .> (Notificar Sistema de Cobranças) : include
+
+@enduml
