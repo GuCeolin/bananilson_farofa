@@ -1,0 +1,48 @@
+@startuml
+class Aluno {
+  - Nome: String
+  - Matricula: int
+  + FazerMatricula()
+  + CancelarMatricula()
+}
+
+class Curso {
+  - Nome: String
+  - Creditos: int
+  - disciplinas: List<String>
+  - turmas: List<Turma>
+}
+
+class Turma {
+  - materia: String
+  - maxAluno: int
+  - minAluno: int
+  - matricula: List<int>
+  - professor: Professor
+  - aluno: List<Aluno>
+}
+
+class Sistema {
+  + gerarBoleto()
+}
+
+class Professor {
+  - Nome: String
+  - Matricula: int
+  - Disciplina: String
+  + acessarTurma()
+}
+
+class Secretaria {
+  - disciplinas: List<Disciplina>
+  - professores: List<Professor>
+  - alunos: List<Aluno>
+  + gerarCurriculo()
+  + notificarPagamentos()
+}
+
+Turma "1" -- "1" Professor
+Aluno "*" -- "1" Turma : matricula
+Secretaria "1" -- "*" Sistema
+Curso "1" -- "*" Turma
+@enduml
