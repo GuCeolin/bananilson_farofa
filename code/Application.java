@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import java.util.List;
 
 class Aluno{
@@ -11,6 +12,15 @@ class Aluno{
 public void cancelarMatricula(){
 
 }
+
+@Override
+    public String toString() {
+        return "Aluno{" +
+                "nome='" + nome + '\'' +
+                ", matricula=" + matricula +
+                '}';
+    } 
+
 }
 
 class Curso{
@@ -27,8 +37,17 @@ class Professor {
     private int matricula;
     private String disciplina;
 
-    public void acessarTurma() {
+    public Aluno getAluno(){
+        return aluno;
     }
+
+    public void acessarTurma() {
+        
+            for (Aluno aluno : alunos) {
+                System.out.println(aluno);
+            }
+    
+
 }
 
 class Turma{
@@ -36,7 +55,7 @@ class Turma{
     private int minaluno = 3;
     private String materia;
     private Professor professor;
-    private List<Aluno> aluno;
+    public List<Aluno> alunos = new ArrayList<>();
 
     public Turma(String materia, Professor professor, List<Aluno> aluno) {
         this.materia = materia;
