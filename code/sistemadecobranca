@@ -1,0 +1,13 @@
+
+
+public class SistemaDeCobrancas {
+    public void gerarCobranca(Aluno aluno, double valor) {
+        // Implementar lógica para gerar cobrança
+        System.out.println("Gerando cobrança de " + valor + " para o aluno " + aluno.getNome());
+    }
+
+    public void notificarAluno(Aluno aluno) {
+        // Implementar lógica para notificação do aluno
+        System.out.println("Notificando aluno " + aluno.getNome() + " sobre a cobrança.");
+    }
+}
