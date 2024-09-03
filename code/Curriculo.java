@@ -9,27 +9,27 @@ public class Curriculo {
     }
 
     public void adicionarDisciplina(Disciplina disciplina) {
-        if (!disciplinas.contains(disciplina)) {
-            disciplinas.add(disciplina);
-        }
+        disciplinas.add(disciplina);
     }
 
     public double calcularCoeficienteRendimento() {
-        double totalPontos = 0;
-        int totalCreditos = 0;
-
+        double somaNotas = 0;
+        int somaCreditos = 0;
         for (Disciplina disciplina : disciplinas) {
-            totalPontos += disciplina.getNota() * disciplina.getCreditos();
-            totalCreditos += disciplina.getCreditos();
+            somaNotas += disciplina.getNota() * disciplina.getCreditos();
+            somaCreditos += disciplina.getCreditos();
         }
-
-        return totalCreditos > 0 ? totalPontos / totalCreditos : 0;
+        return (somaCreditos > 0) ? somaNotas / somaCreditos : 0.0;
     }
 
     @Override
-    public String toString() {
-        return "Curriculo{" +
-                "disciplinas=" + disciplinas +
-                '}';
-    }
+public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("Currículo:\n");
+    for (Disciplina disciplina : disciplinas) {
+        sb.append("  ").append(disciplina).append("\n");
+    }
+    return sb.toString();
+}
+
 }
