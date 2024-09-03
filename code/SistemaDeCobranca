@@ -1,0 +1,12 @@
+public class SistemaDeCobrancas {
+
+    public void gerarCobranca(Aluno aluno, double valor) {
+        // Implementação da geração de cobrança (simulação)
+        System.out.println("Cobrança gerada para o aluno " + aluno.getNome() + " no valor de R$" + valor);
+    }
+
+    public void notificarAluno(Aluno aluno) {
+        // Implementação da notificação (simulação)
+        System.out.println("Notificação enviada para o aluno " + aluno.getNome());
+    }
+}
