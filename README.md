@@ -8,7 +8,7 @@ Escreva um ou dois parágrafo resumindo o objetivo do seu projeto.
 * Nome completo do aluno 4
 
 ## Orientadores
-* Nome completo do professor 1
+* Cristiano de Macedo Neto
 * Nome completo do professor 2
 
 ## Instruções de utilização
