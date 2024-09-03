@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Curso {
@@ -6,7 +7,7 @@ public class Curso {
 
     public Curso(String nome, List<Disciplina> disciplinas) {
         this.nome = nome;
-        this.disciplinas = disciplinas;
+        this.disciplinas = new ArrayList<>(disciplinas);
     }
 
     public String getNome() {
@@ -18,16 +19,28 @@ public class Curso {
     }
 
     public void adicionarDisciplina(Disciplina disciplina) {
-        if (!disciplinas.contains(disciplina)) {
-            disciplinas.add(disciplina);
+        disciplinas.add(disciplina);
+    }
+
+    public int calcularTotalCreditos() {
+        int totalCreditos = 0;
+        for (Disciplina disciplina : disciplinas) {
+            totalCreditos += disciplina.getCreditos();
         }
+        return totalCreditos;
     }
 
     @Override
     public String toString() {
-        return "Curso{" +
-                "nome='" + nome + '\'' +
-                ", disciplinas=" + disciplinas +
-                '}';
-    }
+        StringBuilder sb = new StringBuilder();
+        sb.append("Curso: ").append(nome).append("\n")
+          .append("Total de Créditos: ").append(calcularTotalCreditos()).append("\n")
+          .append("Disciplinas:\n");
+        for (Disciplina disciplina : disciplinas) {
+            sb.append("  ").append(disciplina).append("\n");
+        }
+        return sb.toString();
+    }
 }
+    
+
