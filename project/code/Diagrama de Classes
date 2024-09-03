@@ -1,48 +1,121 @@
 @startuml
+
 class Aluno {
-  - Nome: String
-  - Matricula: int
-  + FazerMatricula()
-  + CancelarMatricula()
+    - String nome
+    - String matricula
+    - Curriculo curriculo
+    - List<Disciplina> disciplinasObrigatorias
+    - List<Disciplina> disciplinasOptativas
+    + Aluno(String nome, String matricula, Curriculo curriculo)
+    + String getNome()
+    + String getMatricula()
+    + Curriculo getCurriculo()
+    + void matricularDisciplinaObrigatoria(Disciplina disciplina)
+    + void matricularDisciplinaOptativa(Disciplina disciplina)
+    + void matricularEmMecanicaAutomotiva(Disciplina mecanicaAutomotiva)
+    + double calcularCoeficienteRendimento()
+    + String toString()
+}
+
+class Curriculo {
+    - List<Disciplina> disciplinas
+    + Curriculo()
+    + void adicionarDisciplina(Disciplina disciplina)
+    + double calcularCoeficienteRendimento()
+    + String toString()
+}
+
+class Disciplina {
+    - String nome
+    - int creditos
+    - double nota
+    + Disciplina(String nome, int creditos, double nota)
+    + String getNome()
+    + int getCreditos()
+    + double getNota()
+    + String toString()
 }
 
 class Curso {
-  - Nome: String
-  - Creditos: int
-  - disciplinas: List<String>
-  - turmas: List<Turma>
-}
-
-class Turma {
-  - materia: String
-  - maxAluno: int
-  - minAluno: int
-  - matricula: List<int>
-  - professor: Professor
-  - aluno: List<Aluno>
-}
-
-class Sistema {
-  + gerarBoleto()
+    - String nome
+    - List<Disciplina> disciplinas
+    + Curso(String nome)
+    + String getNome()
+    + List<Disciplina> getDisciplinas()
+    + void adicionarDisciplina(Disciplina disciplina)
+    + int calcularTotalCreditos()
+    + String toString()
 }
 
 class Professor {
-  - Nome: String
-  - Matricula: int
-  - Disciplina: String
-  + acessarTurma()
+    - String nome
+    - List<Disciplina> disciplinasMinistradas
+    + Professor(String nome, List<Disciplina> disciplinasMinistradas)
+    + String getNome()
+    + List<Disciplina> getDisciplinasMinistradas()
+    + void adicionarDisciplina(Disciplina disciplina)
+    + void listarAlunosPorDisciplina(Turma turma)
+    + String toString()
+}
+
+class Turma {
+    - Disciplina disciplina
+    - Professor professor
+    - List<Aluno> alunos
+    - boolean ativa
+    + Turma(Disciplina disciplina, Professor professor)
+    + Disciplina getDisciplina()
+    + Professor getProfessor()
+    + List<Aluno> getAlunos()
+    + boolean isAtiva()
+    + void adicionarAluno(Aluno aluno)
+    + void removerAluno(Aluno aluno)
+    + void finalizarPeriodoMatriculas()
+    + String toString()
+}
+
+class DadosUniversidade {
+    - List<Aluno> alunos
+    - List<Professor> professores
+    - List<Curso> cursos
+    - List<Turma> turmas
+    + DadosUniversidade()
+    + void adicionarAluno(Aluno aluno)
+    + void adicionarProfessor(Professor professor)
+    + void adicionarCurso(Curso curso)
+    + void adicionarTurma(Turma turma)
+    + List<Aluno> getAlunos()
+    + List<Professor> getProfessores()
+    + List<Curso> getCursos()
+    + List<Turma> getTurmas()
+    + String toString()
 }
 
 class Secretaria {
-  - disciplinas: List<Disciplina>
-  - professores: List<Professor>
-  - alunos: List<Aluno>
-  + gerarCurriculo()
-  + notificarPagamentos()
+    - DadosUniversidade dadosUniversidade
+    + Secretaria(DadosUniversidade dadosUniversidade)
+    + void matricularAlunoEmTurma(Aluno aluno, Turma turma)
+    + void cancelarMatricula(Aluno aluno, Turma turma)
+    + String toString()
 }
 
-Turma "1" -- "1" Professor
-Aluno "*" -- "1" Turma : matricula
-Secretaria "1" -- "*" Sistema
-Curso "1" -- "*" Turma
+class SistemaDeCobrancas {
+    + void gerarCobranca(Aluno aluno, double valor)
+    + void notificarAluno(Aluno aluno)
+}
+
+Aluno --> Curriculo
+Aluno --> Disciplina : matricularEm
+Aluno --> Turma : matricularEm
+Professor --> Turma
+Turma --> Disciplina
+Turma --> Aluno
+Curso --> Disciplina
+DadosUniversidade --> Aluno
+DadosUniversidade --> Professor
+DadosUniversidade --> Curso
+DadosUniversidade --> Turma
+Secretaria --> DadosUniversidade
+SistemaDeCobrancas --> Aluno
+
 @enduml
