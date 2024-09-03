@@ -1,5 +1,4 @@
-
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class Professor {
@@ -8,7 +7,7 @@ public class Professor {
 
     public Professor(String nome, List<Disciplina> disciplinasMinistradas) {
         this.nome = nome;
-        this.disciplinasMinistradas = disciplinasMinistradas;
+        this.disciplinasMinistradas = new ArrayList<>(disciplinasMinistradas);
     }
 
     public String getNome() {
@@ -20,17 +19,28 @@ public class Professor {
     }
 
     public void adicionarDisciplina(Disciplina disciplina) {
-        if (!disciplinasMinistradas.contains(disciplina)) {
-            disciplinasMinistradas.add(disciplina);
+        disciplinasMinistradas.add(disciplina);
+    }
+
+    public void listarAlunosPorDisciplina(Turma turma) {
+        if (disciplinasMinistradas.contains(turma.getDisciplina())) {
+            System.out.println("Alunos matriculados na disciplina " + turma.getDisciplina().getNome() + ":");
+            for (Aluno aluno : turma.getAlunos()) {
+                System.out.println("  " + aluno.getNome() + " - Matrícula: " + aluno.getMatricula());
+            }
+        } else {
+            System.out.println("O professor " + nome + " não ministra a disciplina " + turma.getDisciplina().getNome());
         }
     }
 
     @Override
-    public String toString() {
-        return "Professor{" +
-                "nome='" + nome + '\'' +
-                ", disciplinasMinistradas=" + disciplinasMinistradas +
-                '}';
-
+public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("Professor: ").append(nome).append("\nDisciplinas Ministradas:\n");
+    for (Disciplina disciplina : disciplinasMinistradas) {
+        sb.append("  ").append(disciplina).append("\n");
     }
+    return sb.toString();
+}
+
 }
