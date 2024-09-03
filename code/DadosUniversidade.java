@@ -1,71 +1,46 @@
-
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class DadosUniversidade {
-    private List<Aluno> alunos;
-    private List<Professor> professores;
-    private List<Curso> cursos;
-    private List<Turma> turmas;
+public class Curso {
+    private String nome;
+    private List<Disciplina> disciplinas;
 
-    public DadosUniversidade() {
-        this.alunos = new ArrayList<>();
-        this.professores = new ArrayList<>();
-        this.cursos = new ArrayList<>();
-        this.turmas = new ArrayList<>();
+    public Curso(String nome, List<Disciplina> disciplinas) {
+        this.nome = nome;
+        this.disciplinas = new ArrayList<>(disciplinas);
     }
 
-    public void adicionarAluno(Aluno aluno) {
-        if (!alunos.contains(aluno)) {
-            alunos.add(aluno);
+    public String getNome() {
+        return nome;
+    }
+
+    public List<Disciplina> getDisciplinas() {
+        return disciplinas;
+    }
+
+    public void adicionarDisciplina(Disciplina disciplina) {
+        disciplinas.add(disciplina);
+    }
+
+    public int calcularTotalCreditos() {
+        int totalCreditos = 0;
+        for (Disciplina disciplina : disciplinas) {
+            totalCreditos += disciplina.getCreditos();
         }
+        return totalCreditos;
     }
 
-    public void adicionarProfessor(Professor professor) {
-        if (!professores.contains(professor)) {
-            professores.add(professor);
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Curso: ").append(nome).append("\n")
+          .append("Total de Créditos: ").append(calcularTotalCreditos()).append("\n")
+          .append("Disciplinas:\n");
+        for (Disciplina disciplina : disciplinas) {
+            sb.append("  ").append(disciplina).append("\n");
         }
-    }
-
-    public void adicionarCurso(Curso curso) {
-        if (!cursos.contains(curso)) {
-            cursos.add(curso);
-        }
-    }
-
-
-
-
-public void adicionarTurma(Turma turma) {
-    if (!turmas.contains(turma)) {
-        turmas.add(turma);
+        return sb.toString();
     }
 }
+    
 
-public List<Aluno> getAlunos() {
-    return alunos;
-}
-
-public List<Professor> getProfessores() {
-    return professores;
-}
-
-public List<Curso> getCursos() {
-    return cursos;
-}
-
-public List<Turma> getTurmas() {
-    return turmas;
-}
-
-@Override
-public String toString() {
-    return "DadosUniversidade{" +
-            "alunos=" + alunos +
-            ", professores=" + professores +
-            ", cursos=" + cursos +
-            ", turmas=" + turmas +
-            '}';
-}
-}
