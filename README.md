@@ -1,5 +1,5 @@
 # Nome do projeto
-Escreva um ou dois parágrafo resumindo o objetivo do seu projeto.
+O projeto se trata de um sistema ficticio de faculdade, contendo todas as classes e metodos necessários para a utilização e manutenção do mesmo.
 
 ## Integrantes
 * Gustavo Ceolin
