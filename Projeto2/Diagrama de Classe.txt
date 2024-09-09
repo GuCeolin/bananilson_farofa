@@ -1,0 +1,63 @@
+@startuml
+
+class Contrato {
+  +int id
+  +Date dataInicio
+  +Date dataFim
+  +Pedido pedido
+  +Automovel automovel
+  +Financiamento financiamento
+}
+
+class Pedido {
+  +int id
+  +Date data
+  +Cliente cliente
+}
+
+class Automovel {
+  +String matrícula
+  +int ano
+  +String marca
+  +String modelo
+  +String placa
+}
+
+class Financiamento {
+  +Banco banco
+  +float valor
+}
+
+class Cliente {
+  +String RG
+  +String CPF
+  +String Nome
+  +String Endereço
+  +String Profissão
+  +List entidadesEmpregadoras
+  +List rendimentos
+}
+
+class Empregador {
+  +String Nome
+  +String Endereço
+}
+
+class Rendimento {
+  +float valor
+}
+
+class Banco {
+  +String Nome
+  +String CNPJ
+}
+
+Contrato --> Pedido
+Contrato --> Automovel
+Contrato --> Financiamento
+Pedido --> Cliente
+Cliente --> Empregador : entidadesEmpregadoras
+Cliente --> Rendimento : rendimentos
+Financiamento --> Banco
+
+@enduml
