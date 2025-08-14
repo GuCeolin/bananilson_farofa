@@ -1,15 +1,13 @@
-# Nome do projeto
+# Projeto de Laboratório de Produção de Software 01
 O projeto se trata de um sistema ficticio de faculdade, contendo todas as classes e metodos necessários para a utilização e manutenção do mesmo.
 
 ## Integrantes
 * Gustavo Ceolin
 * Hugo Viana
 * Dougla Viana
-* Nome completo do aluno 4
 
 ## Orientadores
 * Cristiano de Macedo Neto
-* Nome completo do professor 2
 
 ## Instruções de utilização
 O usuário deve criar um cadastro no sistema da faculade, como aluno deve escolher suas materias do semestre e assim verá suas turmas e aulas na semana, tendo no maximo 4 disciplinas como uma obrigatoria e duas optativas, recebendo todo mes pelo sistema de cobranças seu boleto de mensalidade.
